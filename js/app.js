@@ -53,9 +53,9 @@
         render(cardPicked)
       }
     }
-    // console.log('dealer hand', dealer)
-    // console.log('player hand', player)
-    console.log(deck2)
+     console.log('dealer hand', dealer)
+     console.log('player hand', player)
+     console.log(deck2)
   } 
 
   function getWinner() {
@@ -76,7 +76,10 @@
     console.log('value ', value)
     if (value === 21) {
       gameStatusDisplayLoc.innerHTML = `Black Jack, ${turn === 'dealer' ? 'Dealer' : 'You' } Wins`
-    } 
+    } else if (value > 21){
+      gameStatusDisplayLoc.innerHTML = `Bust! ${turn === 'dealer' ? 'Dealer' : 'You' } Wins`
+
+    }
 
   }
   // Function to render deck state
