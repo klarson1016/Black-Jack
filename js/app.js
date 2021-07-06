@@ -130,7 +130,7 @@
   }  
   function stayHandle(){
     turn = 'player'
-    // if (){
+    // if (  ){
 
     // }
   }
