@@ -73,18 +73,19 @@
         value += parseInt(card.substring('0', '2'))
       }
     })
-    console.log('value ', value)
+    //console.log('value ', value)
     if (value === 21) {
       gameStatusDisplayLoc.innerHTML = `Black Jack, ${turn === 'dealer' ? 'Dealer' : 'You' } Wins`
     } else if (value > 21){
       gameStatusDisplayLoc.innerHTML = `Bust! ${turn === 'dealer' ? 'Dealer' : 'You' } Wins`
-
+    } else if (value > 16) {
+      stayHandle()
     }
 
   }
   // Function to render deck state
   function render(cardPicked){
-    //Remove outline class when first card is picked
+    // //Remove outline class when first card is picked
     // if (deck2.length === 1) {
     //   deck2El.classList.remove('outline')
     // }
@@ -110,15 +111,11 @@
   function hitHandle(){
     //console.log('inside hit')
     turn = 'player'
-      if (deck1.length > 0) {
-        //console.log('inside if')
-        // Randomly select number from total cards remaining
-        let randIdx = Math.floor(Math.random() * deck1.length)
-        //console.log('new card ', randIdx)
+      if (deck1.length > 0) {  
+        let randIdx = Math.floor(Math.random() * deck1.length) 
         // Assign card with the random index to a variable
         cardPicked = deck1.splice(randIdx, 1)
         // Add card picked to deck 2
-        //console.log(cardPicked)
         deck2.push(cardPicked[0])
         if (turn === 'player') {
           player.push(cardPicked[0])
@@ -129,8 +126,19 @@
       getWinner()
   }  
   function stayHandle(){
-    turn = 'player'
-    // if (  ){
-
-    // }
-  }
+    // turn = 'dealer'
+    // getWinner()
+    console.log('Inside stay handle ') 
+    if (value > 16) {  
+        let randIdx = Math.floor(Math.random() * deck1.length) 
+        // Assign card with the random index to a variable
+        cardPicked = deck1.splice(randIdx, 1)
+        // Add card picked to deck 2
+        deck2.push(cardPicked[0])
+        if (turn === 'player') {
+          dealer.push(cardPicked[0])
+        } 
+      }
+  
+  
+} 

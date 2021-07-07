@@ -1,0 +1,6 @@
+.oval {
+  height: 50px;
+  width: 100px;
+  background-color: #555;
+  border-radius: 50%;
+}
