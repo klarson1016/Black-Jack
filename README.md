@@ -31,12 +31,18 @@ Black Jack was a game my soilders and I enjoyed that helped us bond while we wer
       Stay handle function ends players turn. Call getWinner function to see if winning coditions have been meet if not dealer will be dealt cards until a condition is meet to end the game.
 ## Screenshots:
 ![Black Jack](https://i.imgur.com/3EVqet8.png)
+
+Before deal button clicked.
 ![Black Jack](https://i.imgur.com/aj3v0XA.png)
+
+Game Over player bust.
 ## Technologies Used:
   Javascript, HTML, CSS
 
 ## Things To Add In The Future:
   Animations to cards when being dealt.
+  
   Include audio
+  
   Split card feature
 
