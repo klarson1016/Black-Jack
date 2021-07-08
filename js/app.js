@@ -61,19 +61,18 @@
       if(card.includes('J') || card.includes('Q') || card.includes('K')) {
         value += 10
       } else if (card.includes('A')) {
-      aceNum ++
+        aceNum ++
         value += 11
       } else {
-        value += parseInt(card.substring('2', '3'))
+        value += parseInt(card.substring('1'))
       }
     })
     console.log('value ', value)
     if (value === 21) {
-      gameStatusDisplayLoc.innerHTML = `Black Jack, ${turn === 'player' ? 'dealer' : 'You' } Wins`
+      gameStatusDisplayLoc.innerHTML = `Black Jack, ${turn === 'dealer' ? 'player' : 'You' } Wins`
     } else if (value > 21){
       gameStatusDisplayLoc.innerHTML = `Bust! ${turn === 'player' ? 'dealer' : 'You' } Wins`
     } 
-
   }
 
 function renderCard(currentPlayer, isDeal) {
