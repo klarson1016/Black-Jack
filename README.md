@@ -33,6 +33,7 @@ Black Jack was a game my soilders and I enjoyed that helped us bond while we wer
 ![Black Jack](https://i.imgur.com/3EVqet8.png)
 
 Before deal button clicked.
+
 ![Black Jack](https://i.imgur.com/aj3v0XA.png)
 
 Game Over player bust.
