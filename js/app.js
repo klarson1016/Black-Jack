@@ -8,6 +8,10 @@
   // Cached element references
   let deck1El = document.getElementById('deck1')
   let deck2El = document.getElementById('deck2')
+
+  let playerContainerEl = document.getElementById('playerCardsCont')
+  let dealerContainerEl = document.getElementById('dealerCardsCont')
+
   const gameStatusDisplayLoc = document.getElementById('gameStatus')
   // Event listeners
   document.getElementById('dealButton').addEventListener('click', handleDeal)
@@ -41,12 +45,10 @@
         // Pass card picked to render function to display
         getWinner()
         turn = turn === 'dealer' ? 'player' : 'dealer'
-        render(cardPicked)
       }
     }
-     console.log('dealer hand', dealer)
-     console.log('player hand', player)
-     console.log(deck2)
+
+    renderCard(null, true)
   } 
 
   function getWinner() {
@@ -74,31 +76,33 @@
 
   }
 
-  // Function to render deck state
-  function render(cardPicked){
-    // //Remove outline class when first card is picked
-    // if (deck2.length === 1) {
-    //   deck2El.classList.remove('outline')
-    // }
-    // // Removes previous picked card from deck 2 class list
-    // if (deck2.length > 1) {
-    //   deck2El.classList.remove(cardToRemove)
-    // }
-  	// // Set card to be removed on next click
-    // cardToRemove = cardPicked
-    // // Add current card picked to deck 2 element
-    // deck2El.classList.add(cardPicked)
-    // // Adjust shadow when deck gets above/below halfway full
-    // if (deck2.length === 26) {
-    //   deck1El.classList.remove('shadow')
-    //   deck2El.classList.add('shadow')
-    // }
-    // // Remove card back color and add outline when last card is picked
-    // if (deck1.length === 0) {
-    //   deck1El.classList.add('outline')
-    //   deck1El.classList.remove('back-blue')
-    // }
+function renderCard(currentPlayer, isDeal) {
+  let cardArray, elementCont;
+  //grab the card array of whoever turn this is
+    cardArray = currentPlayer === 'player' ? player : dealer
+    elementCont = currentPlayer === 'player' ? playerContainerEl : dealerContainerEl
+  console.log('deck in render ', cardArray)
+  if(isDeal) {
+    let playerEls = playerContainerEl.children
+    let dealerEls = dealerContainerEl.children
+    player.forEach( (playerCardValue, index)  => {
+      playerEls[index].classList.remove('outline')
+      playerEls[index].classList.add(playerCardValue)})
+
+      dealer.forEach( (dealerCardValue, index)  => {
+        dealerEls[index].classList.remove('outline')
+        dealerEls[index].classList.add(dealerCardValue)})
+  } else {
+    let newCardValue = cardArray[cardArray.length -1]
+    console.log('new card vlue ', newCardValue)
+    let newCardEl = document.createElement("div")
+
+    newCardEl.id = `${currentPlayer === 'player' ? 'player' : 'dealer'} card`
+    newCardEl.className = 'card large ' + newCardValue;
+    elementCont.appendChild(newCardEl);
   }
+}
+
   function hitHandle(){
     //console.log('inside hit')
     turn = 'player'
@@ -113,7 +117,7 @@
         } 
       }
       console.log(player)
-      //console.log('Player hand new value ', value)
+      renderCard(turn, false)
       getWinner()
   }  
 
@@ -130,6 +134,7 @@
         // Add card picked to deck 2
         deck2.push(cardPicked[0])
         dealer.push(cardPicked[0])
+        renderCard(turn, false)
         getWinner()
     }
 } 

@@ -9,14 +9,23 @@
     <link href="css/style.css" rel="stylesheet">
     <title>Black Jack</title>
 </head>
+
 <body>
-  <p id='gameStatus'>Game Status</p>
-    <button id='hitButton' class="btn btn-success">Hit</button>
-    <button id='dealButton' class="btn btn-danger">Deal</button>
-    <button id='stayBtn' class="btn btn-success">Stay</button>
-  <div class="card d05 large shadow"></div>
-    <div class="card large shadow"></div>
-    <div class="card large back-blue"></div>
+  <div id='gameStatus' style="color: cornsilk;">Black Jack</div>
+  <button id='hitButton' class="btn btn-success">Hit</button>
+  <button id='dealButton' class="btn btn-danger">Deal</button>
+  <button id='stayBtn' class="btn btn-success">Stay</button>
+  <h4>Dealer Cards</h4>
+  <div id= dealerCardsCont> 
+    <div id='dealerCard1' class='card large outline'></div>
+    <div id='dealerCard2' class="card large outline"></div>
+  </div>
+  <!-- <div id='deck' class="card large back-red"></div> -->
+  <h4>Player Cards</h4> 
+  <div id= playerCardsCont> 
+    <div id='playerCard' class='card large outline'></div>
+    <div id='playerCard' class='card large outline'></div>
+  </div>
 </body>
 <script defer src="js/app.js"></script> 
 </html>

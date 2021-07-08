@@ -1,6 +1,25 @@
 body{
   background-color: darkgreen;
 }
+title{
+  
+}
 p{
   color: aliceblue;
 }
+button{
+  align-content: center;
+}
+/* #player {
+  position:absolute;
+  bottom:0;
+  width:130px;
+  height:170px;
+  
+}
+#dealer {
+  position:absolute;
+  top:0;
+  width:130px;
+  height:170px;
+} */
