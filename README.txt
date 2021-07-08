@@ -10,7 +10,7 @@ Player and dealer cards are thencompared to each other and a winner is determine
 ### Play Game Here!(Black-Jack.surge.sh)
 
 Why I chose Black Jack:
-Black Jack was a game my soilders and I enjoyed that helped us bond while we were deployed to Afghanistan. It was a healthy way for us pass the time wihile waiting for our next mission. 
+Black Jack was a game my soilders and I enjoyed that helped us bond while we were deployed to Afghanistan. It was a healthy way for us pass the time while waiting for our next mission.
 
 ## PseudoCode 
 #### 1. Define required veiriables:
@@ -30,8 +30,8 @@ Black Jack was a game my soilders and I enjoyed that helped us bond while we wer
       Hit handle function deals 1 additional card to player hand each time the player clicks it. get winner function is called here each time the player clicks hit to check if winning conditions have been meet.
       Stay handle function ends players turn. Call getWinner function to see if winning coditions have been meet if not dealer will be dealt cards until a condition is meet to end the game.
 ## Screenshots:
-![Black Jack](/Users/KylerLarson/Desktop/BlackJack/Black Jack game start.png )
-
+![Black Jack](https://i.imgur.com/3EVqet8.png)
+![Black Jack](https://i.imgur.com/aj3v0XA.png)
 ## Technologies Used:
   Javascript, HTML, CSS
 
