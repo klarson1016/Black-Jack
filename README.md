@@ -4,8 +4,8 @@
  Player then evaluates the cards dealt to decied to hit or stay. 
    if palyer chooses to hit, another card will be dealt to player. 
   if player is satisfied withcards in had they then click stay to end turn. 
-dealers hand is then revealed andif dealers hand is equal to orless than 16 dealer will be dealt cards until card values aregreater than 17.
-Player and dealer cards are thencompared to each other and a winner is determined.
+dealers hand is then revealed and if dealers hand is equal to orless than 16 dealer will be dealt cards until card values are greater than 17.
+Player and dealer cards are then compared to each other and a winner is determined.
 
 ### Play Game Here!(Black-Jack.surge.sh)
 
