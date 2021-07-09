@@ -1,10 +1,10 @@
 # BlackJack
 ## Instructions
- Once deal is clicked both playerand dealer are dealt 2 cards. 
+ Once deal is clicked both player and dealer are dealt 2 cards. 
  Player then evaluates the cards dealt to decied to hit or stay. 
    if palyer chooses to hit, another card will be dealt to player. 
-  if player is satisfied withcards in had they then click stay to end turn. 
-dealers hand is then revealed and if dealers hand is equal to orless than 16 dealer will be dealt cards until card values are greater than 17.
+  if player is satisfied with cards in hand, player then clicks stay to end turn. 
+Dealers hand is then revealed and if dealers hand is equal to or less than 16 dealer, will be dealt cards until card values are greater than 17.
 Player and dealer cards are then compared to each other and a winner is determined.
 
 ### Play Game Here!(Black-Jack.surge.sh)
@@ -27,7 +27,7 @@ Black Jack was a game my soilders and I enjoyed that helped us bond while we wer
       Handle deal function starts the game and deals 4 cards, 2 to player and 2 to dealer.
       Get Winner function check to see if a winner condition has been meet. Call get winner function inside handleDeal, stayHandle, and hitHandle functions to determin winner based off cards in both dealer and player hands.
       Render Card funtion displays the cards from the CSS file that holds the card images and assigns them to the appropriate divs.
-      Hit handle function deals 1 additional card to player hand each time the player clicks it. get winner function is called here each time the player clicks hit to check if winning conditions have been meet.
+      Hit handle function deals 1 additional card to player hand each time the player clicks it. Get winner function is called here each time the player clicks hit to check if winning conditions have been meet.
       Stay handle function ends players turn. Call getWinner function to see if winning coditions have been meet if not dealer will be dealt cards until a condition is meet to end the game.
 ## Screenshots:
 ![Black Jack](https://i.imgur.com/3EVqet8.png)
