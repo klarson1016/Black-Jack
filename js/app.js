@@ -12,17 +12,27 @@ let deck2El = document.getElementById('deck2')
 let playerContainerEl = document.getElementById('playerCardsCont')
 let dealerContainerEl = document.getElementById('dealerCardsCont')
 
+document.getElementById('restartBtn').style.display = "none"
+document.getElementById('restartBtn').addEventListener('click', handleReset)
+
 const gameStatusDisplayLoc = document.getElementById('gameStatus')
 
 // Event listeners
 document.getElementById('dealButton').addEventListener('click', handleDeal)
-document.querySelector('#hitButton').addEventListener('click', hitHandle)
+document.getElementById('hitButton').addEventListener('click', hitHandle)
 document.getElementById('stayBtn').addEventListener('click', stayHandle)
+document.getElementById('stayBtn').disabled = true
+document.getElementById('hitButton').disabled = true
+
 init()
   // Functions
   // Initialize deck 1 with array of 52 cards 
 function init() {
     
+}
+
+function handleReset() {
+  window.location.reload() 
 }
   // Function to handle a button click:
 function handleDeal() {
@@ -46,6 +56,9 @@ function handleDeal() {
       turn = turn === 'dealer' ? 'player' : 'dealer'
     }
   }
+  document.getElementById('stayBtn').disabled = false
+  document.getElementById('hitButton').disabled = false
+  document.getElementById('dealButton').disabled = true
   renderCard(null, true)
 } 
 function getWinner() {
@@ -66,10 +79,13 @@ function getWinner() {
   } else if (dealerVal > 21){
     gameStatusDisplayLoc.innerHTML = 'Dealer Bust! You Win'
   } 
+  document.getElementById('stayBtn').disabled = true
+  document.getElementById('hitButton').disabled = true
+  document.getElementById('restartBtn').style.display = 'block'
 }
-function calValue(cardArray){
+function calValue(cardArray) {
   let value = 0
-  let aceNum
+  let aceNum = 0
   cardArray.forEach(card => {
     if(card.includes('J') || card.includes('Q') || card.includes('K')) {
       value += 10
@@ -80,6 +96,10 @@ function calValue(cardArray){
       value += parseInt(card.substring('1'))
     }
   })
+  while(value > 21 && aceNum > 0){
+    value -= 10
+    aceNum --
+  }
   return value
 }
 function renderCard(currentPlayer, isDeal) {
@@ -107,6 +127,9 @@ function renderCard(currentPlayer, isDeal) {
     newCardEl.className = 'card large ' + newCardValue;
     elementCont.appendChild(newCardEl);
   }
+
+  console.log('dealer card value ', calValue(dealer))
+  console.log('player card value ', calValue(player))
 }
 function hitHandle(){
   turn = 'player'
@@ -124,6 +147,9 @@ function hitHandle(){
     let playerVal = calValue(player)
     if(playerVal > 21 ){
       gameStatusDisplayLoc.innerHTML = 'You Bust! Dealer Wins'
+      document.getElementById('stayBtn').disabled = true
+      document.getElementById('hitButton').disabled = true
+      document.getElementById('restartBtn').style.display = 'block'
     }
 }  
 function stayHandle(){
