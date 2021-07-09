@@ -4,7 +4,7 @@ const deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d0
  
 let deck2 = []
 let dealer=[], player=[], winner
-let value = 0
+
   // Cached element references
 let deck1El = document.getElementById('deck1')
 let deck2El = document.getElementById('deck2')
@@ -13,7 +13,8 @@ let playerContainerEl = document.getElementById('playerCardsCont')
 let dealerContainerEl = document.getElementById('dealerCardsCont')
 
 const gameStatusDisplayLoc = document.getElementById('gameStatus')
-  // Event listeners
+
+// Event listeners
 document.getElementById('dealButton').addEventListener('click', handleDeal)
 document.querySelector('#hitButton').addEventListener('click', hitHandle)
 document.getElementById('stayBtn').addEventListener('click', stayHandle)
@@ -42,32 +43,49 @@ function handleDeal() {
         dealer.push(cardPicked[0])
       }
        // Pass card picked to render function to display
-      getWinner()
       turn = turn === 'dealer' ? 'player' : 'dealer'
     }
   }
   renderCard(null, true)
 } 
 function getWinner() {
-  value = 0
-  let handDeck = turn === 'dealer'? dealer : player  
+  let dealerVal = calValue(dealer)
+  let playerVal = calValue(player)
+  console.log('dealer value ', dealerVal)
+  console.log('player value ', playerVal)
+  if (dealerVal === playerVal && dealerVal <= 21 && playerVal <= 21){
+    gameStatusDisplayLoc.innerHTML = 'Push'
+  } else if (dealerVal === 21){
+    gameStatusDisplayLoc.innerHTML = 'Black Jack! Dealer Wins'
+  } else if (playerVal === 21){
+    gameStatusDisplayLoc.innerHTML = 'Black Jack! You Win!'
+  } else if (dealerVal > playerVal && dealerVal <= 21 && playerVal <= 21){
+    gameStatusDisplayLoc.innerHTML = 'Dealer Wins'
+  } else if (dealerVal < playerVal && dealerVal <= 21 && playerVal <= 21) {
+    gameStatusDisplayLoc.innerHTML = 'You Win'
+  } else if (playerVal > 21){
+    gameStatusDisplayLoc.innerHTML = 'You Bust! Dealer Wins'
+  } else if (dealerVal > 21){
+    gameStatusDisplayLoc.innerHTML = 'Dealer Bust! You Win'
+  }
+  
+}
+
+function calValue(cardArray){
+  let value = 0
   let aceNum
-    handDeck.forEach(card => {
-      if(card.includes('J') || card.includes('Q') || card.includes('K')) {
-        value += 10
-      } else if (card.includes('A')) {
-        aceNum ++
-        value += 11
-      } else {
-        value += parseInt(card.substring('1'))
-      }
-    })
-    console.log('value ', value)
-    if (value === 21) {
-     gameStatusDisplayLoc.innerHTML = `Black Jack, ${turn === 'dealer' ? 'player' : 'You' } Wins`
-  } else if (value > 21){
-    gameStatusDisplayLoc.innerHTML = `Bust! ${turn === 'player' ? 'dealer' : 'You' } Wins`
-  } 
+  cardArray.forEach(card => {
+    if(card.includes('J') || card.includes('Q') || card.includes('K')) {
+      value += 10
+    } else if (card.includes('A')) {
+      aceNum ++
+      value += 11
+    } else {
+      value += parseInt(card.substring('1'))
+    }
+  })
+
+  return value
 }
 
 function renderCard(currentPlayer, isDeal) {
@@ -75,23 +93,33 @@ function renderCard(currentPlayer, isDeal) {
   //grab the card array of whoever turn this is
     cardArray = currentPlayer === 'player' ? player : dealer
     elementCont = currentPlayer === 'player' ? playerContainerEl : dealerContainerEl
-  console.log('deck in render ', cardArray)
-  if(isDeal) {
     let playerEls = playerContainerEl.children
     let dealerEls = dealerContainerEl.children
+  console.log('deck in render ', cardArray)
+  if(isDeal) {
     player.forEach( (playerCardValue, index)  => {
       playerEls[index].classList.remove('outline')
       playerEls[index].classList.add(playerCardValue)})
 
-      dealer.forEach( (dealerCardValue, index)  => {
-        dealerEls[index].classList.remove('outline')
-        dealerEls[index].classList.add(dealerCardValue)})
-  } else {
+      dealerEls[0].classList.remove('outline')
+      dealerEls[0].classList.add(dealer[0])
+
+      // dealerEls[1].classList.remove('outline')
+      // dealerEls[1].classList.add('back-blue')
+
+  }else{
+    console.log('inside else render card ', currentPlayer)
+    
+    if(currentPlayer === 'dealer') {
+      console.log('inside if of else render card')
+      dealerEls[1].classList.remove('outline')
+      dealerEls[1].classList.add(dealer[1])
+    }
     let newCardValue = cardArray[cardArray.length -1]
     console.log('new card vlue ', newCardValue)
     let newCardEl = document.createElement("div")
 
-    newCardEl.id = `${currentPlayer === 'player' ? 'player' : 'dealer'} card`
+    newCardEl.id = 'player card'
     newCardEl.className = 'card large ' + newCardValue;
     elementCont.appendChild(newCardEl);
   }
@@ -109,12 +137,17 @@ function hitHandle(){
       } 
     }
     renderCard(turn, false)
-    getWinner()
+    let playerVal = calValue(player)
+    if(playerVal > 21 ){
+      gameStatusDisplayLoc.innerHTML = 'You Bust! Dealer Wins'
+    }
 }  
+
 function stayHandle(){
  turn = 'dealer'
-  getWinner()  
-  while (value <= 16){ 
+ dealerVal = calValue(dealer)
+ console.log('inside stay handle  dealerval ', dealerVal)
+  while (dealerVal <= 16){ 
     let randIdx = Math.floor(Math.random() * deck1.length) 
     // Assign card with the random index to a variable
     cardPicked = deck1.splice(randIdx, 1)
@@ -122,6 +155,9 @@ function stayHandle(){
       deck2.push(cardPicked[0])
       dealer.push(cardPicked[0])
       renderCard(turn, false)
-      getWinner()
+      dealerVal = calValue(dealer)
+      console.log('inside stay handle, inside while  dealerval ', dealerVal)
   }
+  getWinner()
+
 } 
