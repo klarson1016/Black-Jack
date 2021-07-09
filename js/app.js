@@ -120,16 +120,21 @@ function renderCard(currentPlayer, isDeal) {
     if(currentPlayer === 'dealer') {
       dealerEls[1].classList.remove('outline')
       dealerEls[1].classList.add(dealer[1])
-    }
-    let newCardValue = cardArray[cardArray.length -1]
-    let newCardEl = document.createElement("div")
-    newCardEl.id = 'player card'
-    newCardEl.className = 'card large ' + newCardValue;
-    elementCont.appendChild(newCardEl);
+      for(let i = 2; i < dealer.length; i++ ){
+        let newCardValue = dealer[i]
+        let newCardEl = document.createElement("div")
+        newCardEl.id = 'dealer card'
+        newCardEl.className = 'card large ' + newCardValue;
+        dealerContainerEl.appendChild(newCardEl);
+      }
+    } else {
+      let newCardValue = cardArray[cardArray.length -1]
+      let newCardEl = document.createElement("div")
+      newCardEl.id = 'player card'
+      newCardEl.className = 'card large ' + newCardValue;
+      elementCont.appendChild(newCardEl);
+    }  
   }
-
-  console.log('dealer card value ', calValue(dealer))
-  console.log('player card value ', calValue(player))
 }
 function hitHandle(){
   turn = 'player'
@@ -162,8 +167,8 @@ function stayHandle(){
     // Add card picked to deck 2
       deck2.push(cardPicked[0])
       dealer.push(cardPicked[0])
-      renderCard(turn, false)
       dealerVal = calValue(dealer)
   }
+  renderCard(turn, false)
   getWinner()
 } 
