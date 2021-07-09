@@ -7,7 +7,7 @@
 dealers hand is then revealed and if dealers hand is equal to orless than 16 dealer will be dealt cards until card values are greater than 17.
 Player and dealer cards are then compared to each other and a winner is determined.
 
-### Play Game Here!(Black-Jack.surge.sh)
+### Play Game Here! (http://black-jack.surge.sh/)
 
 Why I chose Black Jack:
 Black Jack was a game my soilders and I enjoyed that helped us bond while we were deployed to Afghanistan. It was a healthy way for us pass the time while waiting for our next mission.
