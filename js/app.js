@@ -51,8 +51,6 @@ function handleDeal() {
 function getWinner() {
   let dealerVal = calValue(dealer)
   let playerVal = calValue(player)
-  console.log('dealer value ', dealerVal)
-  console.log('player value ', playerVal)
   if (dealerVal === playerVal && dealerVal <= 21 && playerVal <= 21){
     gameStatusDisplayLoc.innerHTML = 'Push'
   } else if (dealerVal === 21){
@@ -67,10 +65,8 @@ function getWinner() {
     gameStatusDisplayLoc.innerHTML = 'You Bust! Dealer Wins'
   } else if (dealerVal > 21){
     gameStatusDisplayLoc.innerHTML = 'Dealer Bust! You Win'
-  }
-  
+  } 
 }
-
 function calValue(cardArray){
   let value = 0
   let aceNum
@@ -84,10 +80,8 @@ function calValue(cardArray){
       value += parseInt(card.substring('1'))
     }
   })
-
   return value
 }
-
 function renderCard(currentPlayer, isDeal) {
   let cardArray, elementCont;
   //grab the card array of whoever turn this is
@@ -95,7 +89,6 @@ function renderCard(currentPlayer, isDeal) {
     elementCont = currentPlayer === 'player' ? playerContainerEl : dealerContainerEl
     let playerEls = playerContainerEl.children
     let dealerEls = dealerContainerEl.children
-  console.log('deck in render ', cardArray)
   if(isDeal) {
     player.forEach( (playerCardValue, index)  => {
       playerEls[index].classList.remove('outline')
@@ -103,22 +96,13 @@ function renderCard(currentPlayer, isDeal) {
 
       dealerEls[0].classList.remove('outline')
       dealerEls[0].classList.add(dealer[0])
-
-      // dealerEls[1].classList.remove('outline')
-      // dealerEls[1].classList.add('back-blue')
-
   }else{
-    console.log('inside else render card ', currentPlayer)
-    
     if(currentPlayer === 'dealer') {
-      console.log('inside if of else render card')
       dealerEls[1].classList.remove('outline')
       dealerEls[1].classList.add(dealer[1])
     }
     let newCardValue = cardArray[cardArray.length -1]
-    console.log('new card vlue ', newCardValue)
     let newCardEl = document.createElement("div")
-
     newCardEl.id = 'player card'
     newCardEl.className = 'card large ' + newCardValue;
     elementCont.appendChild(newCardEl);
@@ -142,11 +126,9 @@ function hitHandle(){
       gameStatusDisplayLoc.innerHTML = 'You Bust! Dealer Wins'
     }
 }  
-
 function stayHandle(){
  turn = 'dealer'
  dealerVal = calValue(dealer)
- console.log('inside stay handle  dealerval ', dealerVal)
   while (dealerVal <= 16){ 
     let randIdx = Math.floor(Math.random() * deck1.length) 
     // Assign card with the random index to a variable
@@ -156,8 +138,6 @@ function stayHandle(){
       dealer.push(cardPicked[0])
       renderCard(turn, false)
       dealerVal = calValue(dealer)
-      console.log('inside stay handle, inside while  dealerval ', dealerVal)
   }
   getWinner()
-
 } 
